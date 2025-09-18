@@ -1,3 +1,4 @@
+using Ecommerce.Api.Application.DTOs;
 using Ecommerce.Api.Application.Services;
 using Ecommerce.Api.Auth;
 using Ecommerce.Api.Domain.Interfaces;
@@ -15,8 +16,13 @@ using System.Text;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-builder.Services.AddTransient<IValidator<CustomerDto>, CustomerValidator>();
+//builder.Services.AddTransient<IValidator<CustomerDto>, CustomerValidator>();
+//builder.Services.AddTransient<IValidator<ProductDto>, ProductValidator>();
+builder.Services.AddValidatorsFromAssemblyContaining<Program>();
+
+
 builder.Services.AddScoped<ICustomerInterface, CustomerService>();
+builder.Services.AddScoped<IProductInteface, ProductService>();
 
 
 builder.Services.AddControllers();
